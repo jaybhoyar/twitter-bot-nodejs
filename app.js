@@ -7,18 +7,4 @@ require("dotenv");
 
 var app = express();
 
-// view engine setup
-
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-	next(createError(404));
-});
-
-// error handler
-
 module.exports = app;
