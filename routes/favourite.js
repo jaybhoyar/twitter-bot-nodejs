@@ -1,12 +1,13 @@
-const config = require("./config.js");
+const config = require("../config");
 const twit = require("twit");
+require("dotenv");
 const Twitter = new twit(config.twitter);
 
 const favorite = () => {
 	let params = {
-		query: config.twitterConfig.queryString,
-		result_type: "recent",
-		lang: "en"
+		q: config.twitterConfig.queryString,
+		// result_type: "recent",
+		lang: "en",
 	};
 
 	Twitter.get("search/tweets", params, (err, data) => {
@@ -15,11 +16,16 @@ const favorite = () => {
 		}
 		let tweetId = data.search_metadata.max_id_str;
 
-		Twitter.post("favorites/create", { id: tweetId }, (err, response) => {
+		Twitter.post("favorites/create", { id: tweetId }, function (
+			err,
+			response
+		) {
 			if (err) {
-				console.log("ERROR: in Retweeting");
+				console.log("ERROR: in favourite");
+			} else if (response) {
+				console.log("SUCCESS: Favourite Successful");
 			}
-			console.log(response);
+			// console.log(response);
 		});
 	});
 };

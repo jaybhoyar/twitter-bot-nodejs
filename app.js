@@ -1,10 +1,17 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-require("dotenv");
+const express = require("express");
+const config = require("./config.js");
+const favorite = require("./routes/favourite");
+const retweet = require("./routes/retweet");
 
-var app = express();
+require("dotenv").config();
+// express initiate
+const app = express();
 
-module.exports = app;
+// functions
+setInterval(favorite, config.favoriteRate);
+setInterval(retweet, config.retweetRate);
+
+//
+const listener = app.listen(process.env.PORT, () => {
+	console.log("Your app is listening  port " + listener.address().port);
+});
