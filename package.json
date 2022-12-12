@@ -7,7 +7,7 @@
 		"start": "node app.js"
 	},
 	"dependencies": {
-		"express": "^4.17.1",
+		"express": "^4.17.3",
 		"dotenv": "^8.2.0",
 		"twit": "^2.2.11",
 		"loader.js": "^4.7.0"
